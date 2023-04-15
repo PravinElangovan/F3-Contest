@@ -1,0 +1,57 @@
+*{
+    margin: 0%;
+    background-color: black;
+    color: white;
+}
+.container{
+    width: 95vw;
+    margin: auto;
+}
+input{
+    border: 1px solid white;
+    width: 20vw;
+    height: 25px;
+    border-radius: 5px;
+}
+.form{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.lable{
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+h2{
+    margin-top:30px;
+}
+#btn{
+    padding: 10px;
+    background-color: white;
+    color: black;
+    margin-top: 20px;
+    width: 100px;
+}
+#employeeCount{
+    margin-top: 30px;
+    display:block;
+}
+#error {
+    color: red;
+}
+#errorStyle{
+    margin-top: 30px;
+}
+li{
+    border: 1px solid white;
+    width:50%;
+    padding:20px;
+    border-radius: 10px;
+    
+}
+ol{
+    margin-top: 20px;
+    display: flex;
+    gap:20px;
+    flex-direction: column;
+}

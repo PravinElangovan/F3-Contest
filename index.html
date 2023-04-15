@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>F3 - Contest</title>
+</head>
+<body>
+    <div class="container">
+        <h2>New Employees</h2>
+        <div class="form">
+            <div>
+                <div class="lable">
+                    Enter Name 
+                </div>
+                <div>
+                    <input type="text" id="name">
+                </div>
+            </div>
+            <div>
+                <div class="lable">
+                    Enter Profession 
+                 </div>
+                 <div>
+                     <input type="text" id="prof">
+                 </div>
+            </div>
+             <div>
+                <div class="lable">
+                    Enter Age
+                 </div>
+                 <div>
+                     <input type="text" id="age">
+                 </div>
+             </div>    
+        </div>
+        <div>
+            <button id="btn">Add User</button>
+         </div>
+         <div id="errorStyle">
+            <span id="error"></span>
+         </div>
+         <div class="employeePart">
+            <h2>Added Empoyees</h2>
+            <p id="employeeCount">You have 0 Employees</p>
+         </div>
+         <ol id="employeeList"></ol>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
