@@ -1,56 +1,92 @@
-var button = document.getElementById('btn');
-var employeeDetails = [];
-var ol = document.getElementById('employeeList');
-var errorMessage = document.getElementById('error');
-var employeeCount = document.getElementById('employeeCount')
+let namev = document.querySelector("#name");
+let profession = document.querySelector("#profession");
+let age = document.querySelector("#age");
 
-button.addEventListener('click', (event) => {
-  event.preventDefault();
+let adduserbtn = document.querySelector("#adduder");
 
-  var name = document.getElementById('name').value;
-  var profession = document.getElementById('prof').value;
-  var age = document.getElementById('age').value;
+let statusmsg = document.querySelector(".status-msg");
 
-  var employee = {
-    employeeName: name,
-    employeeProfession: profession,
-    employeeAge: age
-  };
-  if(employee.employeeName.trim() == "" || employee.employeeProfession.trim() == "" || employee.employeeAge.trim() == ""){
-    //throw the error
-    errorMessage.innerText = 'Error : Please make sure all the fields are filled before adding into the employee'
-  }
-  else{
-    employeeCount.style.display = 'none'
-    errorMessage.innerText ='User Added Successfully'
-    errorMessage.style.color = 'green'
-    employeeDetails.push(employee);
-    console.log(employeeDetails);
+let Users = [];
 
-    var li=document.createElement('li');
-    var deleteButton = document.createElement('button');
-    deleteButton.innerText = 'Delete';
-    deleteButton.style.backgroundColor='white'
-    deleteButton.style.color='black'
-    deleteButton.style.borderRadius='10px'
-    deleteButton.style.padding='5px'
 
-    li.textContent = `Name : ${employee.employeeName} Profession : ${employee.employeeProfession} Age : ${employee.employeeAge}`
-    
-
-    deleteButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    var index = employeeDetails.indexOf(employee);
-    if (index !== -1) {
-      employeeDetails.splice(index, 1);
-      li.remove();
+adduserbtn.addEventListener("click", ()=>{
+   
+    if(namev.value=="" || profession.value=="" || age.value=="" ){
+        // console.log("hi");
+        statusmsg.innerHTML = "Error : Please Make sure All the fields are filled before adding in an employee !"
+        statusmsg.style.color ="#FF4343";
+        statusmsg.style.display = "block";
     }
-  });
 
-  // Append the delete button to the list item
-  li.appendChild(deleteButton);
-  ol.appendChild(li);
-  }
-  
-  
+    else{
+        statusmsg.innerHTML = "Success : Employee Added!"
+        statusmsg.style.color ="#43FF78";
+        statusmsg.style.display = "block";
+
+      
+        let user = {
+            id: Users.length+1,
+            name: namev.value,
+            profession: profession.value,
+            age: age.value
+        }
+        
+
+        Users.push(user);
+        namev.value = "";
+        profession.value = "";
+        age.value = "";
+        console.log(Users);
+
+        printUsers();
+        
+    }
 });
+
+function printUsers(){
+    let str="";
+    for(let user of Users){
+      str+=`
+      <div class="emp-card">
+      <div class="details">
+          <span>${user.id}.</span>
+          <span>Name: ${user.name}</span>
+          <span>Profession: ${user.profession}</span>
+          <span>Age: ${user.age}</span> 
+      </div>
+      <button id="del-user-btn" onclick="deleteUser(${user.id})">Delete User</button>
+      </div>
+      `
+    };
+
+    document.querySelector(".emp-li-container").innerHTML = str;
+}
+
+function deleteUser(del_id){
+    for(let i = 0; i < Users.length; i++){
+        if(Users[i].id == del_id){
+            Users.splice(i, 1);
+        }
+    }
+    let newid=1;
+    for(let user of Users){
+        user.id = newid;
+        newid++;
+    }
+    console.log(Users);
+    printUsers();
+    
+    checkEmptyUsers();
+}
+
+function checkEmptyUsers(){
+    let emplicont = document.querySelector(".emp-li-container");
+
+    if(emplicont.innerHTML.trim()==""){
+
+        emplicont.innerHTML =  "<p>You have 0 Employees.</p>"
+    }
+    
+};
+
+checkEmptyUsers();
